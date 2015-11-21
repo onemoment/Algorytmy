@@ -95,7 +95,7 @@ void ZmienElement(Ksiazka_teleadresowa *K, int Index, Tryb tryb, int dane){
 
 		if (!czyEdycja || dane == 1) { cout << aDodatekA << "Imie: "; cin >> aString; K[Index].set_imie(aString); }
 		if (!czyEdycja || dane == 2) { cout << aDodatekA << "Nazwisko: "; cin >> aString; K[Index].set_nazwisko(aString); }
-		if (!czyEdycja || dane == 3){
+		if (!czyEdycja || dane == 3) {
 			cout << aDodatekB << "Data urodzenia:" << endl;
 			cout << aDodatekC << "Dzien: "; cin >> aDzien;
 			cout << aDodatekC << "Miesiac: "; cin >> aMiesiac;
