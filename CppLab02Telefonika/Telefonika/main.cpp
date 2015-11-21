@@ -25,8 +25,9 @@ int main(){
 	cout << "Numer telefonu: ";
 	cin >> aTelefon;
 
-	Kontakt kontakt;
-	kontakt.getOsoba().setImie(aImie);//, aNazwisko, aTelefon);
+	//Kontakt kontakt;
+	Kontakt kontakt(aImie,aNazwisko, aTelefon);
+	//kontakt.getOsoba().setImie(aImie);//, aNazwisko, aTelefon);
 
 	do{
 		cout << "Wybierz opcje: " << endl;

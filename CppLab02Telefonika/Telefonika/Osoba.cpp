@@ -26,8 +26,8 @@ string Osoba::getNazwisko(){ return this->fNazwisko; }
 string Osoba::getImieINazwisko(bool PierwszeImie){
 	string Result;
 	if (PierwszeImie)
-		Result = this->getImie().append(" ") += this->getNazwisko(); else
-		Result = this->getNazwisko().append(" ") += this->getImie();
+		Result = this->fImie.append(" ") += this->fNazwisko; else
+		Result = this->fNazwisko.append(" ") += this->fImie;
 
 	return Result;
 }
@@ -36,7 +36,7 @@ char Osoba::getPlec(){ return this->fPlec; }
 // setters
 
 void Osoba::setImie(string Imie){
-	this->fImie = Imie;
+	this->fImie.assign(Imie);
 }
 
 void Osoba::setNazwisko(string Nazwisko){
