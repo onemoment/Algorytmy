@@ -25,6 +25,10 @@ public:
 		cout << "Dziala konstruktor z argumentami!" << endl;
 	}
 
+	~Punkt(){
+		cout << "Dziala destruktor klasy Punkt." << x << y << endl;
+	}
+
 	// gettery
 
 	int get_x(){ return this->x; }
@@ -74,18 +78,26 @@ public:
 
 
 int main(){
-	KolorowyPunkt kp;
 
-	cout << kp.get_x() << ", " << kp.get_y() << ", " << kp.getKolor() << endl;
+	{
+		KolorowyPunkt kp;
 
-	Punkt jakis(3, 4);
-	KolorowyPunkt np = KolorowyPunkt(jakis, "kolor");
+		cout << kp.get_x() << ", " << kp.get_y() << ", " << kp.getKolor() << endl;
 
-	cout << np.get_x() << ", " << np.get_y() << ", " << np.getKolor() << endl;
+		Punkt jakis(3, 4);
+		
+		cout << "test";
+		jakis.~Punkt();
+		jakis = NULL;
+		cout << "test2";
 
-	np.wyswietl(np.get_x(), np.get_y());
-	jakis.wyswietl(jakis.get_x(), jakis.get_y());
+		KolorowyPunkt np = KolorowyPunkt(jakis, "kolor"); // po zniszczeniu obiektu
+		
+		cout << np.get_x() << ", " << np.get_y() << ", " << np.getKolor() << endl;
 
+		np.wyswietl(np.get_x(), np.get_y());
+		jakis.wyswietl(jakis.get_x(), jakis.get_y());
+	}
 	cout << endl << endl;
 
 	system("PAUSE");
