@@ -1,0 +1,43 @@
+#pragma once
+
+#include <iostream>
+#include "Instrument.h"
+#include "Trabka.h"
+#include "Gitara.h"
+#include "Fortepian.h"
+
+using namespace std;
+
+int main(){
+
+	Instrument instrument;
+	Trabka trabka;
+	Gitara gitara;
+	Fortepian fortepian;
+
+	instrument.wydajDzwiek();
+	trabka.wydajDzwiek();
+	gitara.wydajDzwiek();
+	fortepian.wydajDzwiek();
+
+	//
+
+	Instrument *wskaznikNaInstrument;
+	
+	wskaznikNaInstrument = &instrument;
+	wskaznikNaInstrument->wydajDzwiek();
+
+	wskaznikNaInstrument = &trabka;
+	wskaznikNaInstrument->wydajDzwiek();
+
+	wskaznikNaInstrument = &gitara;
+	wskaznikNaInstrument->wydajDzwiek();
+
+	wskaznikNaInstrument = &fortepian;
+	wskaznikNaInstrument->wydajDzwiek(); // dziala bo w Instrument jest virtual!
+
+	//
+	cout << endl << endl;
+	system("PAUSE");
+	return 0;
+}
