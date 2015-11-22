@@ -27,6 +27,9 @@
     <ClInclude Include="Fortepian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Elektryczna.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Gitara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Elektryczna.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

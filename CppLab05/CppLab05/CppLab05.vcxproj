@@ -64,12 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Elektryczna.h" />
     <ClInclude Include="Fortepian.h" />
     <ClInclude Include="Gitara.h" />
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="Trabka.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Elektryczna.cpp" />
     <ClCompile Include="Fortepian.cpp" />
     <ClCompile Include="Gitara.cpp" />
     <ClCompile Include="Instrument.cpp" />
