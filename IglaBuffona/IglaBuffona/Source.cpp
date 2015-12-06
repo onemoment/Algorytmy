@@ -63,7 +63,7 @@ void IglaBuffona::losuj(){
 		
 		// losowania
 		this->y = ((double)rand() / (double) RAND_MAX) * 100; // (0,100)
-		this->alfa = ((double)rand() / (double) RAND_MAX) * 3.14159265358; // (0,2PI)
+		this->alfa = ((double)rand() / (double) RAND_MAX) * 3.14159265358; // (0,PI)
 
 		// obliczenia
 		y1 = this->y + this->l * sin(this->alfa);
@@ -108,8 +108,4 @@ void IglaBuffona::wyniki(){
 /*
 losujemy y i k¹t, wyliczamy polozenie i sprawdzamy czy igla przeciela. jak tak to p++
 l - dlogosc igly <=d - odleglosc miedzy liniami
-
- 
-
-
 */
