@@ -1,70 +1,117 @@
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
-void zmiana(int i, int j, int table[]){
-	int temp = table[i];
-	table[i] = table[j];
-	table[j] = temp;
+void pokazTablice(string komunikat, int tablica[], int rozmiar);
+void zamien(int i, int j, int tablica[]);
+void doGory(int n, int tablica[]);
+void naDol(int tablica[], int rozmiar);
+void budujKopiec(int tablica[], int rozmiar);
+void HeapSort(int tablica[], int rozmiar);
+
+int main(){
+
+	srand(time(0));
+	int i;
+	int rozm;
+	
+	cout << "Podaj rozmiar tablicy, n = ";
+	cin >> rozm;
+
+	int *wektor = new int[rozm];
+	for (i=0; i<rozm; i++){
+		wektor[i] = rand() % (100);
+	}
+
+	pokazTablice("Wylosowana tablica, T = ", wektor,rozm);
+	
+	HeapSort(wektor, rozm);
+	
+	pokazTablice("Posortowana tablica, T = ", wektor, rozm);
+
+	system("PAUSE");
+	return 0;
 }
 
-void rewers(int table[], int rozmiar){
-	int srodek = rozmiar / 2;
 
-	for (int i=0; i<srodek; i++){
-		zmiana(i,rozmiar-i-1,table);
+void pokazTablice(string komunikat, int tablica[], int rozmiar){
+	if (rozmiar <= 20){
+		cout << komunikat.c_str();
+
+		for (int i=0; i<rozmiar; i++){
+			cout << tablica[i] << ", ";
+		} 
+		cout << endl;
 	}
 }
 
+void zamien(int i, int j, int tablica[]){
+	int temp = tablica[i];
+	tablica[i] = tablica[j];
+	tablica[j] = temp;
+}
 
-void doGory(int n, int table[]){
+void doGory(int n, int tablica[]){
 
 	int ojc = (n-1) / 2;
 	int index = n;
 
-	
-	while (table[index] < table[ojc]){
+	while (tablica[index] > tablica[ojc]){
 
-		zmiana(ojc, index, table);
+		zamien(ojc, index, tablica);
 		index = ojc;
 		ojc = (index-1) / 2;
 	}
 }
 
-
-
-void kopiec(int table[], int rozmiar){
+void budujKopiec(int tablica[], int rozmiar){
 	for (int i=1; i<rozmiar; i++){
-		doGory(i,table);
+		doGory(i,tablica);
 	}
 }
 
-void naDol(int table[], int rozmiar){
+void naDol(int tablica[], int rozmiar){
 
-	for(int i=rozmiar-1; i>0; i--){
-	  zmiana(0,i, table);
-	  kopiec(table,i);
+	for(int n = rozmiar-1; n > 0; n--){
+
+		zamien(0,n, tablica);
+	  
+		int ptr = 0;
+		int index; // wskazanie na ojca
+
+		while (ptr < n){
+
+			index = ptr;
+
+			// indeksy galezi drzewa
+			int lsyn = 2*index + 1;
+			int psyn = 2*index + 2;
+
+			// okreslanie elementu do porownania
+			if (lsyn >= n && psyn < n){
+				ptr = psyn;
+			}else if (lsyn < n && psyn >= n){
+				ptr = lsyn;
+			}else if (lsyn < n && psyn < n){
+				tablica[lsyn] > tablica[psyn] ? ptr = lsyn : ptr = psyn;
+			}else{
+				break;
+			}
+
+			// zamieniamy jesli mniejszy
+			if (tablica[index] < tablica[ptr]){
+				zamien(index, ptr, tablica);
+			}else{
+				break;
+			}
+		}
 	}
-
 }
 
-void kopcuj(int table[], int rozmiar){
-	kopiec(table, rozmiar);
-	naDol(table,rozmiar);
-	rewers(table, rozmiar);
-}
-int main(){
-
-	int i;
-
-	int rozm = 7;
-	//int wektor[] = { 12, 20, 15, 29, 23, 17, 22, 35, 40, 26, 51, 19 };
-	int wektor[] = {5,6,7,1,2,0,3};
-	for (i=0;i<rozm;i++){cout << wektor[i] << ", ";} cout << endl;
-	kopcuj(wektor, rozm);
-	for (i=0;i<rozm;i++){cout << wektor[i] << ", ";} cout << endl;
-	system("PAUSE");
-	return 0;
+void HeapSort(int tablica[], int rozmiar){
+	budujKopiec(tablica, rozmiar);
+	naDol(tablica,rozmiar);
 }
 
 
