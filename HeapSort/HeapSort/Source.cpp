@@ -38,7 +38,6 @@ int main(){
 void pokazTablice(string komunikat, int tablica[], int rozmiar){
 	if (rozmiar <= 20){
 		cout << komunikat.c_str();
-
 		for (int i=0; i<rozmiar; i++){
 			cout << tablica[i] << ", ";
 		} 
@@ -53,21 +52,13 @@ void zamien(int i, int j, int tablica[]){
 }
 
 void doGory(int n, int tablica[]){
-
-	int ojc = (n-1) / 2;
+	int ojciec = (n-1) / 2;
 	int index = n;
 
-	while (tablica[index] > tablica[ojc]){
-
-		zamien(ojc, index, tablica);
-		index = ojc;
-		ojc = (index-1) / 2;
-	}
-}
-
-void budujKopiec(int tablica[], int rozmiar){
-	for (int i=1; i<rozmiar; i++){
-		doGory(i,tablica);
+	while (tablica[index] > tablica[ojciec]){
+		zamien(ojciec, index, tablica);
+		index = ojciec;
+		ojciec = (index-1) / 2;
 	}
 }
 
@@ -75,18 +66,21 @@ void naDol(int tablica[], int rozmiar){
 
 	for(int n = rozmiar-1; n > 0; n--){
 
-		zamien(0,n, tablica);
+		zamien(0, n, tablica);
 	  
 		int ptr = 0;
 		int index; // wskazanie na ojca
+
+		int lsyn = 0;
+		int psyn = 0;
 
 		while (ptr < n){
 
 			index = ptr;
 
 			// indeksy galezi drzewa
-			int lsyn = 2*index + 1;
-			int psyn = 2*index + 2;
+			lsyn = 2*index + 1;
+			psyn = 2*index + 2;
 
 			// okreslanie elementu do porownania
 			if (lsyn >= n && psyn < n){
@@ -106,20 +100,17 @@ void naDol(int tablica[], int rozmiar){
 				break;
 			}
 		}
+		// while
+	}// for
+}
+
+void budujKopiec(int tablica[], int rozmiar){
+	for (int i=1; i<rozmiar; i++){
+		doGory(i, tablica);
 	}
 }
 
 void HeapSort(int tablica[], int rozmiar){
 	budujKopiec(tablica, rozmiar);
-	naDol(tablica,rozmiar);
+	naDol(tablica, rozmiar);
 }
-
-
-
-/*
-korzeñ= 1
-wartoœæ(i)  =x[i]
-lewysyn(i)  = 2*i
-prawysyn(i) = 2*i+1
-ojciec(i)   =i div 2
-*/
